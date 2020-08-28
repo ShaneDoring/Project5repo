@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed=2;
-    public float jumpForce = 3;
+    public float jumpForce = 7;
     public int maxJumps = 2;
     public int currentJumps;
     public float jumpHeight = 1.1f;
