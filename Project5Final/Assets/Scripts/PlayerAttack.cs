@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
-    private float timeBetweenAttack;
-    public float startTimeToAttack;
+    private float timeBetweenAttack;//Delay between attack cycles
+    public float startTimeToAttack;//time attack is ready
 
-    public Transform attackPosition;
-    public float attackRange;
-    public LayerMask whatIsEnemies;
-    public int damage;
+    public Transform attackPosition;//The position the attack will originate
+    public float attackRange;//the range of the attack from origin
+    public LayerMask whatIsEnemies;//layermask for attacks to only attack enemies layer
+    public int damage;//amount of damage done
 
     public Animator playerAnim;
 
@@ -24,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //creates a circle collider and uses layermask to detect the amount of enemies within range, pressing left control initializes attack and plays attack animation and deals damage to enemy
         if (timeBetweenAttack <= 0)
         {
             if (Input.GetKey(KeyCode.LeftControl))
@@ -43,6 +44,8 @@ public class PlayerAttack : MonoBehaviour
         }
                
     }
+
+    //creates a gizmo to help developer see area of effet for attack
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
