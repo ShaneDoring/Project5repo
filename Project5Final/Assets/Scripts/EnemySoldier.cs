@@ -8,11 +8,15 @@ public class EnemySoldier : MonoBehaviour
     public float moveSpeed;
     public float aiSeeDistance=3;
     public bool moveRight;
-
+    private float timeBetweenAttack;//Delay between attack cycles
+    public float startTimeToAttack;//time attack is ready
+    public Transform firePoint;
     public Transform castPoint;
     private SpriteRenderer sprite;
     private Animator animator;
     public string enemyState = "Patrol";
+
+    public GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +57,8 @@ public class EnemySoldier : MonoBehaviour
             {
                 ChangeEnemyState("Patrol");
             }
+            ChangeEnemyState("Shoot Player");
+
             if (health <= 0)
             {
                 Destroy(gameObject);
@@ -62,8 +68,21 @@ public class EnemySoldier : MonoBehaviour
         if (enemyState == "Shoot Player")
         {
             //do behavior
-            ShootPlayer();
+            if (timeBetweenAttack <= 0)
+            {
+                ShootPlayer();
+                timeBetweenAttack = startTimeToAttack;
+            }
+            else
+            {
+                timeBetweenAttack -= Time.deltaTime;
+            }
+          
             //check for transitions
+            if (CanSee(aiSeeDistance) == false)
+            {
+                ChangeEnemyState("Patrol");
+            }
             if (health <= 0)
             {
                 Destroy(gameObject);
@@ -85,11 +104,13 @@ public class EnemySoldier : MonoBehaviour
         {
             transform.Translate(2 * Time.deltaTime * moveSpeed, 0, 0);
             sprite.flipX = false;
+            
         }
         else
         {
             transform.Translate(-2 * Time.deltaTime * moveSpeed, 0, 0);
             sprite.flipX = true;
+            
         }
        
     }
@@ -104,6 +125,8 @@ public class EnemySoldier : MonoBehaviour
     private void ShootPlayer()
     {
         animator.SetBool("isMoving", false);
+        animator.SetTrigger("Shoot");
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void ChangeEnemyState(string newEnemyState)
