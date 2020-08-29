@@ -16,7 +16,12 @@ public class EnemySoldier : MonoBehaviour
     private Animator animator;
     public string enemyState = "Patrol";
 
+
     public GameObject bulletPrefab;
+    public GameObject bulletPrefab2;
+
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -126,7 +131,15 @@ public class EnemySoldier : MonoBehaviour
     {
         animator.SetBool("isMoving", false);
         animator.SetTrigger("Shoot");
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if (moveRight == true)
+        {
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);          
+        }
+        if (moveRight == false)
+        {
+            Instantiate(bulletPrefab2, firePoint.position, firePoint.rotation);
+        }
+        
     }
 
     private void ChangeEnemyState(string newEnemyState)

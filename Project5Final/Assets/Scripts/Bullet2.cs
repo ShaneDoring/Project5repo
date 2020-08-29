@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet2 : MonoBehaviour
 {
-    public float bulletSpeed=5f;
-   
-  
+    // Start is called before the first frame update
+    public float bulletSpeed = 5f;
+    
+
 
     public Rigidbody2D rigidBody;
     // Start is called before the first frame update
     void Start()
     {
 
-        rigidBody.velocity = new Vector3(bulletSpeed, 0, 0);
+        rigidBody.velocity = new Vector3(-bulletSpeed, 0, 0);
     }
-
-    
-   
 }
