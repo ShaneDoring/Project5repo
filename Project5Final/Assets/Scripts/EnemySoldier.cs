@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemySoldier : MonoBehaviour
 {
-    public int health=1;
+    public int health = 1;
     public float moveSpeed;
-    public float aiSense;
+    public float aiSeeDistance=3;
     public bool moveRight;
 
+    public Transform castPoint;
     private SpriteRenderer sprite;
     private Animator animator;
     public string enemyState = "Patrol";
@@ -31,10 +32,16 @@ public class EnemySoldier : MonoBehaviour
             //do behavior
             Patrol();
             //check for transition
+            if (CanSee(aiSeeDistance))
+            {
+                ChangeEnemyState("Ready Shot");
+            }
+
             if (health <= 0)
             {
                 Destroy(gameObject);
             }
+       
         }
 
         if (enemyState == "Ready Shot")
@@ -42,6 +49,10 @@ public class EnemySoldier : MonoBehaviour
             //do behavior
             ReadyShot();
             //check for transitions
+            if (CanSee(aiSeeDistance)==false)
+            {
+                ChangeEnemyState("Patrol");
+            }
             if (health <= 0)
             {
                 Destroy(gameObject);
@@ -95,6 +106,11 @@ public class EnemySoldier : MonoBehaviour
         animator.SetBool("isMoving", false);
     }
 
+    private void ChangeEnemyState(string newEnemyState)
+    {
+        enemyState = newEnemyState;
+    }
+
     private void OnTriggerEnter2D(Collider2D trig)
     {
         if (trig.gameObject.CompareTag("Turn"))
@@ -108,4 +124,36 @@ public class EnemySoldier : MonoBehaviour
         }
     }
 
+    private bool CanSee(float distance)
+    {
+        bool val = false;
+        float castDist = distance;
+
+        if (moveRight == false)
+        {
+            castDist = -distance;
+        }
+
+        Vector2 endPos = castPoint.position+Vector3.right*castDist;
+        RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, 1 << LayerMask.NameToLayer("Action"));
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.gameObject.CompareTag("Player"))
+            {
+                val = true;
+            }
+            else
+            {
+                val = false;
+            }
+            Debug.DrawLine(castPoint.position, hit.point,Color.yellow);
+        }
+        else
+        {
+            Debug.DrawLine(castPoint.position, endPos, Color.blue);
+        }
+        return val;
+     }
+   
 }
