@@ -38,29 +38,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerhealth > numOfHearts)
-        {
-            playerhealth = numOfHearts;
-        }
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < playerhealth)
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
-        }
+    
 
         //Check for player input for moevement left and right
         float xMovement = Input.GetAxis("Horizontal") * moveSpeed;
@@ -89,8 +67,36 @@ public class PlayerController : MonoBehaviour
                 Jump();
             }
         }
-    }
+        if (playerhealth > numOfHearts)
+        {
+            playerhealth = numOfHearts;
+        }
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < playerhealth)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
 
+
+    }
+    private void LateUpdate()
+    {
+  
+    }
     //Player controlled Fucntions
     void Jump()
     {
@@ -100,10 +106,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
     }
 
-    void Shoot()
-    {
-
-    }
+   
 
     //Player Passive Functions
 

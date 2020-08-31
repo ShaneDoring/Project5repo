@@ -65,6 +65,10 @@ public class GameManager : MonoBehaviour
             //Check for Transitions
 
         }
+        if(gameState=="Spawn Player")
+        {
+            SpawnPlayer();
+        }
         if (gameState == "In Game")
         {
             //Do behavior
@@ -106,7 +110,12 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
+    public void SpawnPlayer()//Creates Instance of Playable Character at the designated Spawn point
+    {   if(player==null)
+        {
+            player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
+        }
+    }
     private void InGame()
     {
 
@@ -154,10 +163,5 @@ public class GameManager : MonoBehaviour
     }
 
     //GamePlay Funtions
-    public void SpawnPlayer()//Creates Instance of Playable Character at the designated Spawn point
-    {
-        {
-            player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
-        }
-    }
+
 }
