@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public GameObject deathAnimation;
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer sprite;
@@ -146,7 +147,8 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject,1);
+        Instantiate(deathAnimation, transform.position, transform.rotation);
+        Destroy(gameObject,.03f);
     }
 
 }

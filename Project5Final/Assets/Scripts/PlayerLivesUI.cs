@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreScript : MonoBehaviour
+public class PlayerLivesUI : MonoBehaviour
 {
 
-    public static int scoreValue = 0;
-    Text score;
+    public static int livesRemaining = 0;
+    Text lives;
 
     // Start is called before the first frame update
     void Start()
     {
-        score = GetComponent<Text>();
-        
+        lives = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreValue = GameManager.instance.playerScore;
-        score.text = "Score " + scoreValue;
+        livesRemaining = GameManager.instance.playerLives;
+        lives.text = "Lives: " + livesRemaining;
     }
 }

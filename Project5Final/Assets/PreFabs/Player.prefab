@@ -188,6 +188,8 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 9968f1318d1a4d545aa86cc1b8c02c24, type: 3}
   emptyHeart: {fileID: 21300000, guid: afa3e86ac247d574790f522c2f295598, type: 3}
+  deathAnimation: {fileID: 1020548893322665048, guid: f528b2febc6658648ac6b0f6303ab489,
+    type: 3}
 --- !u!95 &4689030642890088789
 Animator:
   serializedVersion: 3
