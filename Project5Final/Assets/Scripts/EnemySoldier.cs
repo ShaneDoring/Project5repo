@@ -16,12 +16,12 @@ public class EnemySoldier : MonoBehaviour
     private Animator animator;
     public string enemyState = "Patrol";
 
-
+    public GameObject bloodExplosion;
     public GameObject bulletPrefab;
     public GameObject bulletPrefab2;
+    public GameObject deathAnimation;
 
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +48,9 @@ public class EnemySoldier : MonoBehaviour
 
             if (health <= 0)
             {
+                Instantiate(bloodExplosion, transform.position, transform.rotation);
+                Instantiate(deathAnimation, transform.position, transform.rotation);
+                GameManager.instance.playerScore += 100;
                 Destroy(gameObject);
             }
        
@@ -66,6 +69,9 @@ public class EnemySoldier : MonoBehaviour
 
             if (health <= 0)
             {
+                Instantiate(bloodExplosion, transform.position, transform.rotation);
+                Instantiate(deathAnimation, transform.position, transform.rotation);
+                GameManager.instance.playerScore += 100;
                 Destroy(gameObject);
             }
         }
@@ -91,6 +97,8 @@ public class EnemySoldier : MonoBehaviour
             if (health <= 0)
             {
                 GameManager.instance.playerScore += 100;
+                Instantiate(bloodExplosion, transform.position, transform.rotation);
+                Instantiate(deathAnimation, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
