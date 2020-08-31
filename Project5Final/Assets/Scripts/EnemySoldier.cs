@@ -90,6 +90,7 @@ public class EnemySoldier : MonoBehaviour
             }
             if (health <= 0)
             {
+                ScoreScript.scoreValue += 100;
                 Destroy(gameObject);
             }
         }
