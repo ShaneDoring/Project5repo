@@ -67,13 +67,23 @@ public class GameManager : MonoBehaviour
         }
         if(gameState=="Spawn Player")
         {
+            //do behavior
             SpawnPlayer();
+            //check for transitions
+            if (GameManager.instance.player != null)
+            {
+                ChangeState("In Game");
+            }
         }
         if (gameState == "In Game")
         {
             //Do behavior
             InGame();
             //Check for Transitions
+            if (GameManager.instance.player == null)
+            {
+                ChangeState("Player Death");
+            }
 
         }
         if (gameState == "Player Death")
@@ -111,7 +121,8 @@ public class GameManager : MonoBehaviour
 
     }
     public void SpawnPlayer()//Creates Instance of Playable Character at the designated Spawn point
-    {   if(player==null)
+    { 
+        if(player==null)
         {
             player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
         }
@@ -135,11 +146,14 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
+    public void ChangeState(string newState)
+    {
+        gameState = newState;
+    }
 
     // Scene Functions
 
-        //Overloaded function for scene loading with name or scene index number
+    //Overloaded function for scene loading with name or scene index number
     public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);

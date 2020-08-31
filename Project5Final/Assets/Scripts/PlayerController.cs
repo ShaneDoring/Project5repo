@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     public int maxJumps = 2;
     public int currentJumps;
     public float jumpHeight = 1.1f;
+
     public int playerhealth=3;
     public int numOfHearts = 3;
-
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+
     public GameObject deathAnimation;
 
     private Rigidbody2D rigidBody;
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+
+    
 
     }
 
