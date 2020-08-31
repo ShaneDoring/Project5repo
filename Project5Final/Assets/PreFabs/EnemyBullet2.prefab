@@ -133,4 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
+  damage: 1
   rigidBody: {fileID: 5576601474348046501}
+  secondsToDestroy: 4
+  impactEffect: {fileID: 8821912755836802373, guid: 6b2a8a6d50487cc4ba9246774e08be3b,
+    type: 3}

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public int maxJumps = 2;
     public int currentJumps;
     public float jumpHeight = 1.1f;
+    public int playerhealth=3;
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer sprite;
@@ -100,6 +101,22 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         IsGrounded();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        playerhealth -= damage;
+        if (playerhealth <= 0)
+        {
+            //player dies
+            Die();
+        }
+
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
 }
