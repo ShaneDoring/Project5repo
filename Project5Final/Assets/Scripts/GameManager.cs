@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject player;
     public GameObject playerSpawnPoint;
+    public GameObject playerDeathScreen;
     
 
 
@@ -134,7 +135,8 @@ public class GameManager : MonoBehaviour
 
     private void PlayerDeath()
     {
-
+        //Show the retry/quit game canvas
+        playerDeathScreen.SetActive(true);
     }
 
     private void VictoryScreen()
