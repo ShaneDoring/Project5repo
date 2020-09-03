@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
                 //if player presses escape game will quit
 
         }
-        if (gameState == "Initialize Game")
+       else if (gameState == "Initialize Game")
         {
             //Do behavior
             InitializeGame(); //loads first Level
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                        
 
         }
-        if(gameState=="Spawn Player")
+        else if(gameState=="Spawn Player")
         {
             //do behavior
             SpawnPlayer();
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
                 ChangeState("In Game");
             }
         }
-        if (gameState == "In Game")
+        else if (gameState == "In Game")
         {
             //Do behavior
             InGame();
@@ -96,21 +96,21 @@ public class GameManager : MonoBehaviour
 
 
         }
-        if (gameState == "Player Death")
+        else if (gameState == "Player Death")
         {
             //Do behavior
             PlayerDeath();
             //Check for Transitions
-
+            ChangeState("Game Over Screen");
         }
-        if (gameState == "Victory Screen")
+        else if (gameState == "Victory Screen")
         {
             //Do behavior
             VictoryScreen();
             //Check for Transitions
 
         }
-        if (gameState == "Game Over Screen")
+        else if (gameState == "Game Over Screen")
         {
             //Do behavior
             GameOverScreen();
@@ -146,8 +146,8 @@ public class GameManager : MonoBehaviour
 
     private void PlayerDeath()
     {
-        //Show the retry/quit game canvas
-        playerDeathScreen.SetActive(true);
+        //Show the Death Scene
+        LoadLevel(5);
     }
 
     private void VictoryScreen()
@@ -157,7 +157,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOverScreen()
     {
-
+        //wait for player input
+        PlayerChoiceExitOrStartGame();
     }
     public void ChangeState(string newState)
     {
