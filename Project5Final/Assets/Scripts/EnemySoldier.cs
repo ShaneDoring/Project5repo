@@ -56,7 +56,7 @@ public class EnemySoldier : MonoBehaviour
        
         }
 
-        if (enemyState == "Ready Shot")
+        else if (enemyState == "Ready Shot")
         {
             //do behavior
             ReadyShot();
@@ -76,7 +76,7 @@ public class EnemySoldier : MonoBehaviour
             }
         }
 
-        if (enemyState == "Shoot Player")
+        else if (enemyState == "Shoot Player")
         {
             //do behavior
             if (timeBetweenAttack <= 0)

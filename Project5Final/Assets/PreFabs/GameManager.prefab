@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5362646490618784957}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   playerLives: 3
   playerScore: 0
   currentSceneIndex: 0
+  lastCheckPointPos: {x: 0, y: 0}
   playerPrefab: {fileID: 4689030642890088795, guid: e4f7983003ef93848919eb6082e04f94,
     type: 3}
   player: {fileID: 0}

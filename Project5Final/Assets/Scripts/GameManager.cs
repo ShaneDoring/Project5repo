@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour
     public int playerLives=3;
     public int playerScore=0;
     public int currentSceneIndex = 0;
+    
 
     public GameObject playerPrefab;
     public GameObject player;
     public GameObject playerSpawnPoint;
     public GameObject playerDeathScreen;
+
+    public Vector3 playerRespawnPoint;
+
+
     
 
 
@@ -146,8 +151,15 @@ public class GameManager : MonoBehaviour
 
     private void PlayerDeath()
     {
+        //reduce player lives remaining
+        playerLives -= 1;
         //Show the Death Scene
         LoadLevel(5);
+    }
+
+    private void RespawnPlayer()
+    {
+
     }
 
     private void VictoryScreen()

@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Turn
   - Explosive Barrel
+  - GM
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
