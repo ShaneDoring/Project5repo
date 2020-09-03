@@ -57,13 +57,20 @@ public class GameManager : MonoBehaviour
             //Do behavior
             TitleScreen();
             //Check for Transitions
+                //if player presses any key, will transition to Initialize Game gameState
+                //if player presses escape game will quit
 
         }
         if (gameState == "Initialize Game")
         {
             //Do behavior
-            InitializeGame();
+            InitializeGame(); //loads first Level
             //Check for Transitions
+            
+            
+                ChangeState("Spawn Player");
+            
+                       
 
         }
         if(gameState=="Spawn Player")
@@ -71,6 +78,7 @@ public class GameManager : MonoBehaviour
             //do behavior
             SpawnPlayer();
             //check for transitions
+            
             if (GameManager.instance.player != null)
             {
                 ChangeState("In Game");
@@ -85,6 +93,7 @@ public class GameManager : MonoBehaviour
             {
                 ChangeState("Player Death");
             }
+
 
         }
         if (gameState == "Player Death")
@@ -114,12 +123,14 @@ public class GameManager : MonoBehaviour
     //Game State Functions
     private void TitleScreen()
     {
+        //Wait for player input
+        PlayerChoiceExitOrStartGame();
 
     }
 
     private void InitializeGame()
     {
-
+        LoadLevel(1);
     }
     public void SpawnPlayer()//Creates Instance of Playable Character at the designated Spawn point
     { 
@@ -178,6 +189,16 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentSceneIndex + 1);
     }
 
-    //GamePlay Funtions
+    public void PlayerChoiceExitOrStartGame()
+    {
+        if (Input.anyKey)
+        {
+            ChangeState("Initialize Game");
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
 }
