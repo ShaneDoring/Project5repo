@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject deathAnimation;
 
+    public CameraFollow camFollowScript;
+
     private Rigidbody2D rigidBody;
     private SpriteRenderer sprite;
     private BoxCollider2D boxCollider2D;
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
 
-    
+        
 
     }
 

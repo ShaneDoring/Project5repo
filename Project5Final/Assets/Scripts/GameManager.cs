@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public int playerLives=3;
     public int playerScore=0;
     public int currentSceneIndex = 0;
-    
+
+ 
 
     public GameObject playerPrefab;
     public GameObject player;
@@ -82,8 +83,9 @@ public class GameManager : MonoBehaviour
         {
             //do behavior
             SpawnPlayer();
+
             //check for transitions
-            
+
             if (GameManager.instance.player != null)
             {
                 ChangeState("In Game");
@@ -142,6 +144,7 @@ public class GameManager : MonoBehaviour
         if(player==null)
         {
             player = Instantiate(playerPrefab, playerSpawnPoint.transform.position, Quaternion.identity);
+            
         }
     }
     private void InGame()
